@@ -8,7 +8,7 @@ export default defineConfig([
   { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
   { files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: globals.browser },
 },
-pluginVue.configs["flat/essential"],
+// pluginVue.configs["flat/essential"],
 
 // Add Jest globals
 {

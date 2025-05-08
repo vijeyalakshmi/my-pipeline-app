@@ -1,0 +1,8 @@
+applications:
+  - name: my-pipeline-app
+    memory: 128M
+    buildpacks:
+      - nodejs_buildpack
+    command: npm start
+    path: .
+    random-route: true

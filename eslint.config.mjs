@@ -4,7 +4,12 @@ import { defineConfig } from "eslint/config";
 
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"] },
+  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: {
+    sourceType: "module",
+    globals: {
+      ...globals.node, // 👈 Add Node.js globals here
+    },
+  }, },
   { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
   { files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: globals.browser },
 },
@@ -16,7 +21,8 @@ export default defineConfig([
   languageOptions: {
     globals: {
       ...globals.browser, // Include browser globals
-      jest: true,          // Enable Jest globals
+      ...globals.node,
+      ...globals.jest,
       describe: true,      // Jest's 'describe' function
       it: true,            // Jest's 'it' function
       expect: true,        // Jest's 'expect' function

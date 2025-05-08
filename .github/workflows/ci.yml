@@ -15,15 +15,31 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Install dependencies
+      run: |
+        npm install
 
-      - name: Clean install
-        run: npm ci
+    - name: Run Tests with Coverage
+      run: |
+        npm test -- --coverage
+      continue-on-error: false  # Fail the build if tests fail
 
-      - name: Run tests
-        run: npx jest
+    - name: Lint Code
+      run: |
+        npx eslint . --fix
+
+    - name: Deploy to Staging (If Tests Pass)
+      run: |
+        echo "Deploying to Staging Environment"
+        # Add your staging deployment scripts/commands here
+        # For example, a simple SSH deploy might look like:
+        # ssh user@staging-server "cd /path/to/app && git pull && npm install && pm2 restart app"
+      if: success()  # Only runs this step if previous steps (tests) are successful

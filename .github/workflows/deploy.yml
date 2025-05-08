@@ -26,11 +26,10 @@ jobs:
           npm run lint
           npm test
 
-      - name: Install Cloud Foundry CLI
-        run: |
-          wget https://packages.cloudfoundry.org/stable/cf-cli_8.0.0_linux_x86-64.tgz -O cf-cli.tgz
-          tar -xzf cf-cli.tgz
-          sudo mv cf /usr/local/bin
+      - name: Set up Cloud Foundry CLI
+        uses: jvalkeal/setup-cf-cli@v0
+        with:
+          version: 8.0.0  # Specify the desired cf CLI version
 
       - name: Deploy to SAP BTP
         run: |

@@ -25,7 +25,11 @@ jobs:
         
     - name: Install dependencies
       run: |
-        npm install
+        npm ci
+
+    - name: Set correct permissions for node modules
+      run: |
+        sudo chmod -R 755 ./node_modules/.bin  # Ensure permissions for executables
 
     - name: Make jest executable
       run: |
@@ -35,7 +39,7 @@ jobs:
       run: |
         npm test
       continue-on-error: false  # Fail the build if tests fail
-      
+
     - name: Lint Code
       run: |
         npx eslint . --fix

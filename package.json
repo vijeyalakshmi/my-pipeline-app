@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "npx jest --coverage"
+ //   "lint": "npx eslint ."
   },
   "keywords": [],
   "author": "",

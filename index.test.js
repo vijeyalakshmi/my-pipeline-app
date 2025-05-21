@@ -4,6 +4,6 @@ const app = require('./index');
 describe('GET /', () => {
   it('responds with Hello, Pipeline!', async () => {
     const res = await request(app).get('/');
-    expect(res.text).toBe('Hello, Pipeline! Hello, Pipeline! This is the automated CI / CD deployment!');
+    expect(res.text).toBe('Hello, Pipeline! This is the automated CI / CD deployment!');
   });
 });
